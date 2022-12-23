@@ -27,7 +27,15 @@ productsRouter.get("/:productId", async (req, res, next) => {
 productsRouter.get("/", async (req, res, next) => {
   try {
     const productsArray = await getProducts();
-    res.send(productsArray);
+    if (req.query && req.query.category) {
+      const filteredproducts = productsArray.filter(
+        (product) => product.category === req.query.category
+      );
+
+      res.send(filteredproducts);
+    } else {
+      res.send(productsArray);
+    }
   } catch (error) {
     next(error);
   }

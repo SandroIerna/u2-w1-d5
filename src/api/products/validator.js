@@ -43,8 +43,10 @@ const reviewSchema = {
   },
   rate: {
     in: ["body"],
-    isNumeric: {
-      errorMessage: "Rate is required & should be a number",
+    isInt: {
+      options: { min: 1, max: 5 },
+      errorMessage:
+        "Rate is mandatory field and needs to be a number and between 1 and 5!",
     },
   },
 };
