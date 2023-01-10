@@ -5,7 +5,7 @@ import productsRouter from "./api/products/index.js";
 import { badRequest } from "./errorHandlers.js";
 
 const server = express();
-const port = 3001;
+const port = process.env.PORT;
 
 server.use(express.json());
 
@@ -19,5 +19,6 @@ server.use("/files", filesRouter);
 server.use(badRequest);
 
 server.listen(port, () => {
+  console.log(port);
   console.table(listEndpoints(server));
 });
